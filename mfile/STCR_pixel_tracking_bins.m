@@ -41,13 +41,13 @@ if ifGPU
             Data.N(i).W = gpuArray(Data.N(i).W);
         end
     end
-    
-%     gpuInfo = gpuDevice;
-%     gpuSize = gpuInfo.AvailableMemory;
-%     imSize  = numel(new_img_x)*8;
-%     if imSize*para.Recon.no_comp > gpuSize*0.3
-%         para.Recon.type = [para.Recon.type,' less memory'];
-%     end
+    keyboard
+    gpuInfo = gpuDevice;
+    gpuSize = gpuInfo.AvailableMemory;
+    imSize  = numel(new_img_x)*8;
+    if imSize*para.Recon.no_comp > gpuSize*0.3
+        para.Recon.type = [para.Recon.type,' less memory'];
+    end
 end
 
 fidelity = @(im) compute_fidelity_yt_new(im,Data,para);

@@ -96,8 +96,8 @@ for iter_no = 1:para.Recon.noi
 end
 
 Image = squeeze(gather(Image));
-if isfield(para.Recon,'PD_frames')
-    para.PD_Cost = para.Cost;
-    para = rmfield(para,'Cost');
-end
+% if isfield(para.Recon,'PD_frames')
+%     para.PD_Cost = para.Cost;
+%     para = rmfield(para,'Cost');
+% end
 disp('Reconstruction done.');toc(t1);fprintf('\n')

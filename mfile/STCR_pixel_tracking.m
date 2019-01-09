@@ -39,7 +39,7 @@ if isfield(Data,'first_guess')
     Image = Data.first_guess;
     noi_start = length(para.step_size)+1;
     para.Recon.noi = para.Recon.noi + noi_start;
-    para.Cost = para.PD_Cost;
+%    para.Cost = para.PD_Cost;
 else
     Image = Data.first_est;
     noi_start = 1;
@@ -61,7 +61,7 @@ if ifGPU
     end
 end
 
-para.Cost = struct('fidelityNorm',[],'temporalNorm',[],'spatialNorm',[],'totalCost',[]);
+%para.Cost = struct('fidelityNorm',[],'temporalNorm',[],'spatialNorm',[],'totalCost',[]);
 
 fidelity = @(im) compute_fidelity_yt_new(im,Data,para);
 sTV      = @(im) compute_sTV_yt(im,para.Recon.weight_sTV,beta_sqrd);
@@ -99,8 +99,8 @@ for iter_no = noi_start:para.Recon.noi
 end
 
 Image = squeeze(gather(abs(Image)));
-para.PD_Cost = para.Cost;
-para.PD_step_size = para.step_size;
+% para.PD_Cost = para.Cost;
+% para.PD_step_size = para.step_size;
 para = rmfield(para,'Cost');
 para.CPUtime.PD = toc(t1);
 

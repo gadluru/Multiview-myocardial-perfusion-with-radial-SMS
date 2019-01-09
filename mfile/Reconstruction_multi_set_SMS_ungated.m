@@ -1,4 +1,4 @@
-function [Image,para] = Reconstruction_multi_set_SMS_ungated(para)
+function Reconstruction_multi_set_SMS_ungated(para)
 
 fprintf('\n');
 disp('$$$ MRI Reconstruction by Ye $$$');
@@ -39,42 +39,16 @@ end
 for i=1:length(Data)
     para{i}.Recon.noi = para_temp.Recon.noi;
     para{i}.step_size = para_temp.step_size;
-    para{i}.weight_tTV = para{i}.weight_tTV/3;keyboard
+    para{i}.weight_tTV = para{i}.weight_tTV/3;
     [Image_ref(:,:,:,i,:),para{i}] = STCR(Data{i},para{i});
     Data{i}.first_guess = Image_ref(:,:,:,i,:);
 end
 
-%% self gating
-para = auto_gating_SMS_yt(Image_ref,para);
-
-%% motion estimation
-for i=1:length(Data)
-    para{i}.Recon.noi = 100;
-    Data{i}.Motion = get_motion_SMS(Image_ref(:,:,:,i,:),1,10);
-    Data{i}.Motion_bins = get_motion_SMS_bins(Image_ref(:,:,:,i,:),para{i},1,10);
-end
-
-%% pixel tracking STCR recon
-for i=1:length(Data)
-    para{i}.Recon.weight_tTV = para{i}.Recon.weight_tTV*3;
-    [Image(:,:,:,i,:),para{i}] = STCR_pixel_tracking_bins(Data{i},para{i});
-end
-
-%% save image and parameters
-
-Image = cat(3,Image_PD,Image);
-
-if para_temp.Recon.crop_half_FOV == 1
-    Image = abs(crop_half_FOV(Image));
+%% pixel tracking reconstruction
+if para_temp.gated
+    Recon_gated(Image_ref,Image_PD,Data,para);
 else
-    Image = abs(Image);
+    Recon_ungated(Image_ref,Image_PD,Data,para);
 end
-
-disp('Saving image into Results...')
-
-Image = gather(Image);
-save([para_temp.dir.save_recon_img_mat_dir,para_temp.dir.save_recon_img_name],'Image','para','-v7.3');
-
-disp('Reconstruction done');fprintf('\n')
 
 end
