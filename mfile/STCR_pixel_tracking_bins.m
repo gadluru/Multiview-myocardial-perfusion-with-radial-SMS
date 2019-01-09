@@ -41,7 +41,7 @@ if ifGPU
             Data.N(i).W = gpuArray(Data.N(i).W);
         end
     end
-    keyboard
+
     gpuInfo = gpuDevice;
     gpuSize = gpuInfo.AvailableMemory;
     imSize  = numel(new_img_x)*8;
