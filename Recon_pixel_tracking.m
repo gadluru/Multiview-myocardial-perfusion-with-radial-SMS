@@ -3,7 +3,7 @@ clear para
 
 Data_files = dir('RawData/*kSpace.mat');
 
-para = load_default_para('2D SMS golden NUFFT');
+para = load_default_para('2D SMS golden GROG');
 para.dir.load_kSpace_name = Data_files.name;
 para.dir.load_kSpace_dir = [Data_files.folder,'/'];
 
