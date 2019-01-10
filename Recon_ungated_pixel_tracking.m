@@ -35,6 +35,6 @@ para.slice_pick = 2;
 
 % The final reconstructed image will be saved under
 % /ReconData/mat_files/MID***/
-% By loading in the reconstrtucted image and use the function
+% By loading in the reconstructed image and use the function
 % 'show_yt_pause(reshape_MSMS(Image))' the images can be displayed.
 Reconstruction_multi_set_SMS_ungated(para);
