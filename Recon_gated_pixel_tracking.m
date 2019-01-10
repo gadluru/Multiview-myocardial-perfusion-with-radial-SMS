@@ -31,7 +31,7 @@ para.kSpace_center = 145;
 
 % There are 3 SMS sets in the date. This option can be set to reconstructed
 % any sets. 
-para.slice_pick = 1;
+para.slice_pick = 2;
 
 % The final reconstructed image will be saved under
 % /ReconData/mat_files/MID***/
