@@ -56,13 +56,6 @@ MID = para.MID;
 disp('RawData:')
 disp([para.dir.load_kSpace_dir para.dir.load_kSpace_name])
 
-try
-    load([para.dir.load_kSpace_dir,'*',MID,'*data_info*'])
-    para.data_info = data_info;
-catch
-    disp('No data_info')
-end
-
 kSpace_name = char(para.dir.load_kSpace_name);
 
 name = [kSpace_name(1:end-11),'_'];

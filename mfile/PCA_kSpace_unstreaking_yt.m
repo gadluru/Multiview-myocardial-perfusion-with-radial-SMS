@@ -8,7 +8,7 @@ ifPCA = ~isempty(dir(PCA_dir));
 if ifPCA
     load(PCA_dir)
     [sx,sy,sz,no_comp,ns] = size(kSpace);
-    disp('PCA result alreaty exists, skip PCA...');
+    disp('PCA result already exists, skip PCA...');
 else
     load(strcat(para.dir.load_kSpace_dir,para.dir.load_kSpace_name));
     if exist('AIFData','var')

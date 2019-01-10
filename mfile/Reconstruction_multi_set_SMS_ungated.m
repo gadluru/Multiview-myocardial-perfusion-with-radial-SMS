@@ -1,10 +1,4 @@
 function Reconstruction_multi_set_SMS_ungated(para)
-
-fprintf('\n');
-disp('$$$ MRI Reconstruction by Ye $$$');
-disp('$$$    phye1988@gmail.com    $$$');
-fprintf('\n');
-
 %% load parameters from para
 para_temp = prepare_para(para);
 clear para
